@@ -1,0 +1,45 @@
+% This is LLNCS.DOC the documentation file of
+% the LaTeX2e class from Springer-Verlag
+% for Lecture Notes in Computer Science, version 2.4
+\documentclass{llncs}
+\usepackage{llncsdoc}
+%
+
+\usepackage{algorithmic}
+\usepackage{amssymb}
+%
+\begin{document}
+%
+\title{Neural Random Access Machines Optimized by Differential Evolution}
+%
+\titlerunning{Neural Random Access Machines Optimized by Differential Evolution}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+\author{M.Baioletti, V.Belli, G. Di Bari, V.Poggioni}
+%
+\authorrunning{M.Baioletti, V.Belli, G. Di Bari, V.Poggioni} % abbreviated author list (for running head)
+%
+%%%% list of authors for the TOC (use if author list has to be modified)
+\tocauthor{M.Baioletti, V.Belli, G. Di Bari, V.Poggioni}
+%
+\institute{Università di Perugia, Dip. Matematica e Informatica, Italy\\
+\email{\{marco.baioletti,valentina.poggioni\}@unipg.it, \{belli.valerio,dbgabri\}@gmail},\\ 
+}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+\keywords{NRAM, differential evolution, neural network, TROVARE ALTRO}
+\end{abstract}
+\input intro
+\input nram
+\input denn
+\input experiments
+\input conclusions
+
+\bibliographystyle{plain}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{nramDENNbib}
+
+%
+\end{document}
