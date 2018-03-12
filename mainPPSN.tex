@@ -7,6 +7,31 @@
 
 \usepackage{algorithmic}
 \usepackage{amssymb}
+\usepackage{schemabloc}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+%\usetikzlibrary{paths.ortho}
+\makeatletter
+\input{lib/tikzlibrarypaths.ortho.code}
+\makeatother
+
+%flow chart style
+
+\tikzstyle{decision} = [diamond, draw, fill=white!20, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+\tikzstyle{block} = [rectangle, draw, fill=white!20, text width=5em, text centered, rounded corners, minimum height=4em]
+
+\tikzstyle{voidpoint} = [coordinate] 
+
+\tikzstyle{round} = [draw, ellipse, fill=white!20, node distance=3cm, minimum height=3em]
+
+\tikzstyle{arrow} = [draw, -latex']
+
+\tikzstyle{line} = [draw, -latex']
+
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+
 %
 \begin{document}
 %
@@ -31,11 +56,11 @@
 \begin{abstract}
 \keywords{NRAM, differential evolution, neural network, TROVARE ALTRO}
 \end{abstract}
-\input intro
-\input nram
-\input denn
-\input experiments
-\input conclusions
+\input{intro}
+\input{nram}
+\input{denn}
+\input{experiments}
+\input{conclusions}
 
 \bibliographystyle{plain}
 % argument is your BibTeX string definitions and bibliography database(s)
