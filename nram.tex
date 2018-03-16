@@ -1,7 +1,10 @@
 \section{Neural Random Access Machines}
 In this section we briefly recall the NRAM model presented in \cite{NRAM:2016}.  
-This model can be included in the recent research trend producing models able to learn algorithms \cite{NTM,Joulin2015InferringAP}.  The core part of the model is a neural controller, which acts
-as a “processor”. The controller can be a feedforward neural network or an LSTM, and it is the only
+This model can be included in the recent research trend of learning algorithms \cite{Graves2014NeuralTM,Joulin2015InferringAP,others}.
+Most of these are different implementations of the controller-interface abstraction: they use a neural controller as a ``processor'' and provide different interfaces for input, output and memory. In order make these models trainable with gradient descent, the authors made them ``artificiously'' fully differentiable modifying the continuous nature of their interfaces.
+
+In particular the NRAM model can learn to solve problems that require explicit manipulation and dereferencing of pointers. 
+ The controller, the core part of the NRAM model can be a feedforward neural network or an LSTM, and it is the only
 trainable part of the model.
 
 
