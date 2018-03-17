@@ -1,33 +1,9 @@
-\section{Neural Random Access Machines}
+\section{Neural Random Access Machines} \label{nram}
 In this section we briefly recall the NRAM model presented in \cite{NRAM:2016}.  
-This model can be included in the recent research trend of learning algorithms \cite{Graves2014NeuralTM,Joulin2015InferringAP,others}.
-Most of these are different implementations of the controller-interface abstraction: they use a neural controller as a ``processor'' and provide different interfaces for input, output and memory. In order make these models trainable with gradient descent, the authors made them ``artificiously'' fully differentiable modifying the continuous nature of their interfaces.
+This model can be included in the recent research trend of learning algorithms \cite{Graves2014NeuralTM,greve2016evolving,Joulin2015InferringAP,zaremba:2016,zaremba:2015}.
+Like others, NRAM model is an implementation of the controller-interface abstraction: it uses a neural controller as a ``processor'' and provide different interfaces for input, output and memory. 
 
 In particular the NRAM model can learn to solve problems that require explicit manipulation and dereferencing of pointers. 
  The controller, the core part of the NRAM model can be a feedforward neural network or an LSTM, and it is the only
 trainable part of the model.
 
-
-*******
-A fundamental operation of modern computers is pointer manipulation and dereferencing.  In this
-work, we investigate a model class that we name the Neural Random-Access Machine (NRAM),
-which is a neural network that has, as primitive operations, the ability to manipulate, store in mem-
-ory, and dereference pointers into its working memory. By providing our model with dereferencing
-as a primitive,  it becomes possible to train models on problems whose solutions require pointer
-manipulation and chasing.  Although all computationally universal neural networks are equivalent,
-which means that the NRAM model does not have a representational advantage over other models if
-they are given a sufficient number of computational steps, in practice, the number of timesteps that
-a given model has is highly limited, as extremely deep models are very difficult to train. As a result,
-the model’s core primitives have a strong effect on the set of functions that can be feasibly learned
-in practice, similarly to the way in which the choice of a programming language strongly affects the
-functions that can be implemented with an extremely small amount of code.
-Finally, the usefulness of computationally-universal neural networks depends entirely on the ability
-of backpropagation to find good settings of their parameters.  Indeed, it is trivial to define the “op-
-timal” hypothesis class (Solomonoff, 1964), but the problem of finding the best (or even a good)
-function in that class is intractable.  Our work puts the backpropagation algorithm to another test,
-where the model is extremely deep and intricate.
-In our experiments, we evaluate our model on several algorithmic problems whose solutions required
-pointer manipulation and chasing. These problems include algorithms on a linked-list and a binary
-tree. While we were able to achieve encouraging results on these problems, we found that standard
-optimization algorithms struggle with these extremely deep and nonlinear models.  We believe that
-advances in optimization methods will likely lead to better results.
