@@ -1,1 +1,9 @@
-\section{Neural Random Access Machines}
+\section{Neural Random Access Machines} \label{nram}
+In this section we briefly recall the NRAM model presented in \cite{NRAM:2016}.  
+This model can be included in the recent research trend of learning algorithms \cite{Graves2014NeuralTM,greve2016evolving,Joulin2015InferringAP,zaremba:2016,zaremba:2015}.
+Like others, NRAM model is an implementation of the controller-interface abstraction: it uses a neural controller as a ``processor'' and provide different interfaces for input, output and memory. 
+
+In particular the NRAM model can learn to solve problems that require explicit manipulation and dereferencing of pointers. 
+ The controller, the core part of the NRAM model can be a feedforward neural network or an LSTM, and it is the only
+trainable part of the model.
+
