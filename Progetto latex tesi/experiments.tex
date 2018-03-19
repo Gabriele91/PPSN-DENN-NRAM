@@ -135,84 +135,84 @@ In the experiments we have follow what is do in the paper \cite{NRAM:2016}, trai
 	\centering
 
 	\rowcolors{2}{white}{LightGray}
-	\resizebox{\textwidth}{!}{\begin{tabular}{ccccccc}
-		\rowcolor{Gray} \textbf{Task} & \multicolumn{2}{c}{\textbf{Train complexity}} & \multicolumn{2}{c}{\textbf{Train error}} & \multicolumn{2}{c}{\textbf{Generalization}} \\
-		\rowcolor{Gray} & No CL & CL & No CL & CL & No CL & CL \\ \hline
+	\resizebox{\textwidth}{!}{\begin{tabular}{ccccccccc}
+		\rowcolor{Gray} \textbf{Task} & \multicolumn{2}{c}{\textbf{Train complexity}} & \multicolumn{2}{c}{\textbf{Reached cost 0}} & \multicolumn{2}{c}{\textbf{Train error}} & \multicolumn{2}{c}{\textbf{Generalization}} \\
+		\rowcolor{Gray} & No CL & CL & No CL & CL & No CL & CL & No CL & CL \\ \hline
 		
 		Access & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 6$\\
 			$t = 3$
-		\end{tabular} & $\textrm{len}(A) \leq 10$ & 0 & 0 & \begin{tabular}{@{}c@{}c}Semi\\-perfect\end{tabular} & Perfect \\ 
+		\end{tabular} & $\textrm{len}(A) \leq 10$ & \checkmark & \checkmark & 0 & 0 & \begin{tabular}{@{}c@{}c}Semi\\-perfect\end{tabular} & Perfect \\ 
 		Increment & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 9$\\
 			$t = 9$
-		\end{tabular} & $\textrm{len}(A) \leq 11$ & 0 & 0 & Perfect & Perfect \\
+		\end{tabular} & $\textrm{len}(A) \leq 11$  & \checkmark & \checkmark & 0 & 0 & Perfect & Perfect \\
 		Copy & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 5$\\
 			$t = 12$
-		\end{tabular} & $\textrm{len}(A) \leq 9$ & 0 & 0 & \_ & Perfect \\ 
+		\end{tabular} & $\textrm{len}(A) \leq 9$  & \checkmark & $\times$ & 0 & $\times$ & \begin{tabular}{@{}c@{}c}Semi\\-perfect\end{tabular} & \_ \\ 
 		Reverse & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 4$\\
 			$t = 9$
-		\end{tabular} & $\textrm{len}(A) \leq 8$ & 0 & 0 & Perfect & Perfect \\ 
+		\end{tabular} & $\textrm{len}(A) \leq 8$ & \checkmark & \checkmark & 0 & 0 & Perfect & Perfect \\ 
 		Swap & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 7$\\
 			$t = 6$
-		\end{tabular} & $\textrm{len}(A) \leq 7$ & 0 & 40\% & \begin{tabular}{@{}c@{}c}Semi\\-perfect\end{tabular} & No \\ \hline\hline
-		Permutation & $\textrm{len}(A) = 5$ & $\textrm{len}(A) \leq 20$ & 0 & 0 & Perfect & Perfect \\ 
-		ListK & $\textrm{len}(list) = \_$ & $\textrm{len}(list) \leq \_$ & \_ & \_ & \_ & \_ \\ 
-		ListSearch & $\textrm{len}(list) = \_$ & $\textrm{len}(list) \leq \_$ & \_ & \_ & \_ & \_  \\ 
-		Merge & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= \_$\end{tabular} & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$\leq \_$\end{tabular} & \_ & \_ & \_ & \_ \\ 
-		WalkBST & $\textrm{size}(tree) = \_$ & $\textrm{size}(tree) \leq \_$ & \_ & \_ & \_ & \_ \\ 
-		Sum & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= 6$\end{tabular}& \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$ \leq 10$\end{tabular} & 0 & 0 & Perfect & Perfect \\
-	\end{tabular}}
+		\end{tabular} & $\textrm{len}(A) \leq 7$ & \checkmark & $\times$ & 0 & $\times$ & \begin{tabular}{@{}c@{}c}Semi\\-perfect\end{tabular} & $\times$ \\ \hline\hline
+		Permutation & $\textrm{len}(A) = 5$ & $\textrm{len}(A) \leq 20$ & $\times$ & $\times$ & 0 & 0 & Perfect & Perfect \\ 
+		ListK & $\textrm{len}(list) = \_$ & $\textrm{len}(list) \leq \_$ & $\times$ & $\times$ & \_ & \_ & \_ & \_ \\ 
+		ListSearch & $\textrm{len}(list) = \_$ & $\textrm{len}(list) \leq \_$ & $\times$ & $\times$ & \_ & \_ & \_ & \_  \\ 
+		Merge & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= \_$\end{tabular} & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$\leq \_$\end{tabular} & $\times$ & $\times$ & \_ & \_ & \_ & \_ \\ 
+		WalkBST & $\textrm{size}(tree) = \_$ & $\textrm{size}(tree) \leq \_$ & $\times$ & $\times$ & \_ & \_ & \_ & \_ \\ 
+		Sum & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= 6$\end{tabular}& \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$ \leq 10$\end{tabular} & $\times$ & $\times$ & 0 & 0 & Perfect & Perfect \\
+	\end{tabular}}\label{tbl:denn-tests-results}
 	\caption{Results of the tests with DENN. The train complexity represents the maximum length of integers sequence A used in the training. The train error represents the lowest error rate reached by the trained neural networks. The generalization represents the behaviour of the neural networks with memory sequences longer and more timesteps with respect to those used in training. The evaluation is executed as in \cite{NRAM:2016}, except for the keyword \textbf{Semi-Perfect} which means that the found solution generalize well only with input sequences and timesteps compatible to those used in the training.}
-	\label{tbl:denn-tests-results}
+	
 \end{table}
 
 \begin{table}[t]
 	\centering
 	
 	\rowcolors{2}{white}{LightGray}
-	\begin{tabular}{cccc}
-		\rowcolor{Gray} \textbf{Task} & \textbf{Train complexity} & \textbf{Train error} & \textbf{Generalization} \\ \hline
+	\resizebox{\textwidth}{!}{\begin{tabular}{ccccc}
+		\rowcolor{Gray} \textbf{Task} & \textbf{Train complexity} & \textbf{Reached cost 0} & \textbf{Train error} & \textbf{Generalization} \\ \hline
 		Access & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 9$\\
 			$t = 3$
-		\end{tabular} & \_ & No \\ 
+		\end{tabular} & $\times$ & \_ & No \\ 
 		Increment & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 9$\\
 			$t = 3$
-		\end{tabular} & \_ & No \\
+		\end{tabular} & $\times$ & \_ & No \\
 		Copy & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 5$\\
 			$t = 3$
-		\end{tabular} & \_ & No  \\ 
+		\end{tabular} & $\times$ & \_ & No  \\ 
 		Reverse & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 4$\\
 			$t = 3$
-		\end{tabular} & \_ & No \\ 
+		\end{tabular} & $\times$ & \_ & No \\ 
 		Swap & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = 7$\\
 			$t = 3$
-		\end{tabular}  & 
+		\end{tabular} & $\times$ & 
 		\_ & No \\ \hline\hline
 		Permutation & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(A) = \_$\\
 			$t = \_$
-		\end{tabular} & \_ & \_ \\ 
+		\end{tabular} & $\times$ & \_ & \_ \\ 
 		ListK & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(list) = \_$\\
 			$t = \_$
-		\end{tabular} & \_ & \_ \\ 
+		\end{tabular} & $\times$ & \_ & \_ \\ 
 		ListSearch & \begin{tabular}{@{}c@{}c}
 			$\textrm{len}(list) = \_$\\
 			$t = \_$
-		\end{tabular} & \_ & \_  \\ 
-		Merge & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= \_$\\$t=\_$\end{tabular} & \_ & \_ \\ 
-		WalkBST & \begin{tabular}{@{}c@{}c}$\textrm{size}(tree) = \_$\\$t=\_$\end{tabular} & \_ & \_  \\ 
-		Sum & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= \_$\\$t=\_$\end{tabular} & \_ & \_ \\
-	\end{tabular}
+		\end{tabular} & $\times$ & \_ & \_  \\ 
+		Merge & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= \_$\\$t=\_$\end{tabular} & $\times$ & \_ & \_ \\ 
+		WalkBST & \begin{tabular}{@{}c@{}c}$\textrm{size}(tree) = \_$\\$t=\_$\end{tabular} & $\times$ & \_ & \_  \\ 
+		Sum & \begin{tabular}{@{}c@{}c}$\textrm{len}(A)+\textrm{len}(B)$\\$= \_$\\$t=\_$\end{tabular} & $\times$ & \_ & \_ \\
+	\end{tabular}}
 	\label{tbl:adam-tests}
 	\caption{Results of the tests of Adam. The contained informations follows those in Table \ref{tbl:denn-tests-results}.}
 \end{table}
@@ -240,13 +240,14 @@ The used variants of DE are \textbf{JADE}, \textbf{SHADE} and \textbf{L-SHADE}, 
 	\label{tbl:example-memories-execution}
 	\caption{Example of execution showing the memory, register and Read/Write gates states of Task Reverse with the controller discovered without the using of Curriculum Learning. The keywords \textbf{p} and \textbf{v} indicates respectively the pointer which is accessed and the value which is written. }
 \end{table}
+\iffalse
 \begin{figure}[t]
 	\centering
 	\begin{tikzpicture}[samples=100,smooth, scale=.875]
 			\begin{axis}[
-  				axis x line=center,
+ 				axis x line=center,
   				axis y line=center,
-  				xlabel={Sequence A length},
+ 				xlabel={Sequence A length},
   				ylabel={Error rate},
     				x label style={at={(axis description cs:0.5,-0.115)},anchor=north},
     				y label style={at={(axis description cs:-0.115,.5)},rotate=90,anchor=south},    				
@@ -265,6 +266,7 @@ The used variants of DE are \textbf{JADE}, \textbf{SHADE} and \textbf{L-SHADE}, 
 	\label{fig:nram-tests-error-rate-plot}
 	\caption{Error rate of best controllers in generalization tests.}
 \end{figure}
+\fi
 The training was executed using configurations of max int, timesteps and registers compatible with those used by Kurach et al. As showed in the Table \ref{tbl:denn-tests-results}, for the easy tasks trained with Differential Evolution without the Curriculum Learning we found a set of hyperparameter which reached error 0 during the training, even using shorter input sequences compared to those used in the paper. Differently from which declared in Kurach at al., for tasks Copy and Swap the search of hyperparameters has been difficulty. The same results was not reached in the training with Theano, as showed in \ref{tbl:adam-tests}. 
 \begin{table}[h]
 	\centering
@@ -278,9 +280,9 @@ The training was executed using configurations of max int, timesteps and registe
 \rowcolor{Gray}Expected & 11 & 7 & 8 & 3 & 11 & 13 & 13 & 6 & 5 & 2 & 0 & 4 & 1 & 5 & 0 & 14 & 11 \\
 	\end{tabular}
 	\label{tbl:right-behaviour}
-	\caption{Right behaviour obtained with the task Access using only 3 timesteps. Once the controller has accessed the value in the input sequence, ``stop'' the execution, i.e. generates a circuit that always writes the accessed value in the first position.}
+	\caption{Right behaviour obtained with the task Access using only 3 timesteps. Once the controller has accessed the value in the input sequence, ``stop'' the execution, i.e. generates a circuit that always writes in the first position the value previously accessed.}
 \end{table}
-Regard the generalization, we observed that the solutions that reached error zero, except with task Reverse and Increment, generalize well only if the input sequences and timesteps are compatible with those used in the training. For example, the training with the task Access has been made with an input sequence of 6 values and 3 timesteps, as it can be seen in the Table \ref{tbl:right-behaviour}. Perhaps, if we execute a controller that reached in the training cost zero for more timesteps compared to those used in the training, keeping the same input sequence, the resulting memory is not that expected, like it can be seen in the Table \ref{tbl:wrong-behaviour}. This shows that the controller learned the patterns that arise in the registers only for 3 timesteps and not for more of these, generating later circuits that have unexpected behaviours.\newline
+Regard the generalization, we observed that the solutions that reached error zero, except with task Reverse and Increment, generalize well only if the input sequences and timesteps are compatible with those used in the training. For example, the training with the task Access has been made with an input sequence of 6 values and 3 timesteps, as it can be seen in the Table \ref{tbl:right-behaviour}. Perhaps, if we execute a controller that reached in the training cost zero for more timesteps compared to those used in the training keeping the same input sequence, the resulting memory is not that expected, like it can be seen in the Table \ref{tbl:wrong-behaviour}. This shows that the controller learned the patterns that arise in the registers only for 3 steps and not for more of these, generating later circuits that have unexpected behaviours.\newline
 \begin{table}[t]
 	\centering
 	\rowcolors{2}{LightGray}{white}
@@ -295,7 +297,7 @@ Regard the generalization, we observed that the solutions that reached error zer
 \rowcolor{Gray}Expected & 6 & 4 & 9 & 6 & 14 & 1 & 1 & 10 & 0 & 11 & 6 & 7 & 3 & 0 & 0 & 14 & 1 \\
 	\end{tabular}
 	\label{tbl:wrong-behaviour}
-	\caption{Wrong behaviour obtained with the task Access using only 5 timesteps. The controller continues to access the values indicated in the position 0 of the memory.}
+	\caption{Wrong behaviour obtained with the task Access, executing for 5 timesteps the controller that reached cost zero and trained without Curriculum Learning. The controller continues to access the position of the memory indicated at the index 0.}
 \end{table}
 The hard tasks...\newline
 
@@ -305,7 +307,7 @@ As observed in Kurach et al., the Curriculum Learning is necessary in some cases
 
 \section{Circuits}\label{subsec:circuits}
 Following are presented the circuits generated by the best solutions found with  the training using DENN. For needs of space, in the circuits are showed only the necessary gates and registers. In the gates \textbf{Less-Than}, \textbf{Less-Equal-Than}, \textbf{Equality}, \textbf{Min} and \textbf{Max} are important the parameters order, indicated with $x$ and $y$. Instead, for the gates \textbf{Read} and \textbf{Write}, the pointer and the value to write are indicated, respectively, with \textbf{ptr} and \textbf{val} labels.\newline\newline
-Overall, the circuits generated differ from those in the paper. Moreover, we observed that the solutions found with different DE variants generate differents circuits. As did in \cite{NRAM:2016}, we present only the ``main'' circuits for the best solutions - for the differences please refer to the original paper. The tables shown in the following examples contains the shots of the memories and registers at the beginning of the steps and the final memory when the NRAM end to execute.
+Overall, the circuits generated differ from those in the paper. Moreover, we observed that the solutions found with different DE variants generate differents circuits. As did in \cite{NRAM:2016}, we present only the ``main'' circuits for the best solutions - to compare them please refers to \cite{NRAM:2016}. The tables shown in the following examples contains the shots of the memories and registers at the beginning of the steps and the final memory when the NRAM end the execution.
 \clearpage
 \subsection{Access}
 \begin{figure}[h]
@@ -330,7 +332,7 @@ Overall, the circuits generated differ from those in the paper. Moreover, we obs
 		%
 	\end{tikzpicture}
 	\label{fig:access-circuit}
-	\caption{The circuit generated for all the steps for the task Access in the training with SHADE/DEGL/1/bin and Curriculum learning.}
+	\caption{The circuit generated by the controller for every step, found with SHADE/DEGL/1/bin with Curriculum learning.}
 \end{figure}
 \FloatBarrier
 \begin{table}[h]
@@ -378,7 +380,7 @@ Overall, the circuits generated differ from those in the paper. Moreover, we obs
 		%
 	\end{tikzpicture}
 	\label{fig:increment-circuit}
-	\caption{The circuit generated for every step for the task Increment found with SHADE/current to p best/1/bin with Curriculum Learning.}
+	\caption{The circuit generated for every step by the controller, found with SHADE/current to p best/1/bin with Curriculum Learning.}
 \end{figure}
 \begin{table}[h]
 	\centering
@@ -440,7 +442,7 @@ Overall, the circuits generated differ from those in the paper. Moreover, we obs
 		%
 	\end{tikzpicture}
 	\label{fig:copy-circuit}
-	\caption{The only circuit generated for all the steps for the task Copy found in the training of the ANN with JADE/curr to p best/1/bin.}
+	\caption{The only circuit generated by the controller, found with JADE/current to p best/1/bin.}
 \end{figure}
 \begin{table}[h]
 	\centering
@@ -465,7 +467,7 @@ Overall, the circuits generated differ from those in the paper. Moreover, we obs
 Final & 8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 11 & 15 & 5 & 8 & 13 & 8 & 3 & 0 & 15 & 8 & 1 & 1 \\
 	\end{tabular}}
 	\label{tbl:access-execution-example}
-	\caption{Behaviour obtained with the task Reverse.}
+	\caption{Behaviour obtained with the task Copy.}
 \end{table}
 \clearpage
 \subsection{Reverse}
@@ -502,7 +504,7 @@ Final & 8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 11 & 15 & 5 & 8 & 13 & 8 & 3 & 0 & 15 & 
 		%
 	\end{tikzpicture}}
 	\label{fig:reverse-circuit-2}
-	\caption{The circuit generated by the second step with the solution found in the training with JADE/current to p best/1/bin with Curriculum Learning.}
+	\caption{The circuit generated by the controller by step $\geq 2$, found with JADE/current to p best/1/bin with Curriculum Learning.}
 \end{figure}
 \def\arraystretch{1.0}
 \begin{table}[h]
