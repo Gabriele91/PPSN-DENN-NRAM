@@ -41,9 +41,27 @@
 	\usetikzlibrary{fadings}
 	\usetikzlibrary{positioning}
 	\usetikzlibrary{calc}
-	\usetikzlibrary{fit,shapes}
+	\usetikzlibrary{fit}
+	\usetikzlibrary{shapes}
+	\usetikzlibrary{snakes}
+	\usetikzlibrary{arrows}
 \usepackage{breakcites}
 
+
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{cellspace}
+\setlength\cellspacetoplimit{0.8ex}
+
+\tikzset{
+    ultra thin/.style= {line width=0.1pt},
+    very thin/.style=  {line width=0.2pt},
+    thin/.style=       {line width=0.4pt},% thin is the default
+    semithick/.style=  {line width=0.6pt},
+    thick/.style=      {line width=0.8pt},
+    very thick/.style= {line width=1.2pt},
+    ultra thick/.style={line width=1.6pt}
+}
 
 \pgfdeclareradialshading{ring}{\pgfpoint{0cm}{0cm}}%
 {
@@ -61,6 +79,9 @@
 \definecolor{GDFiveth}{RGB}{179,205,249}
 \definecolor{GDSixth}{RGB}{129,165,247}
 \definecolor{GDSeventh}{RGB}{82,110,215}
+
+\definecolor{Gray}{gray}{0.8}
+\definecolor{LightGray}{gray}{0.9}
 
 \usepackage{pgfplots}
 	\pgfplotsset{compat=1.13}
@@ -107,6 +128,22 @@
 \setlength{\abovedisplayskip}{0pt}
 \setlength{\belowdisplayskip}{0pt}
 
+% Tikz styles
+
+\tikzstyle{decision} = [diamond, draw, fill=white!20, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+
+\tikzstyle{block} = [rectangle, draw, fill=white!20, text width=5em, text centered, rounded corners, minimum height=4em]
+
+\tikzstyle{voidpoint} = [coordinate]
+
+\tikzstyle{round} = [draw, ellipse, fill=white!20, node distance=3cm, minimum height=3em]
+
+\tikzstyle{arrow} = [draw]
+
+\tikzstyle{line} = [draw]
+
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm, minimum height=2em]
+
 
 \makeatletter
 
@@ -119,6 +156,8 @@
 % Algorithmic ForEach new command
 \algnewcommand\algorithmicforeach{\textbf{for each}}
 \algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+\input{lib/tikzlibrarypaths.ortho.code}
 
 \makeatother
 

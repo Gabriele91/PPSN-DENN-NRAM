@@ -74,9 +74,35 @@ Hence, let $m_i \in M$ the $i^{th}$ module in $M$, $m_i$ is executed as follows
 		\end{equation}
 	}
 \end{itemize}
-where, as stated previously, $a_i, b_i \in \textrm{I\!R}^{R+i-1}$ are produced by the controller and the $o_i$ is the output that is appended to the set $\{r_{1}, \dots, r_{R}, o_{1}, \dots, o_{i-1}\}$ and used later for the subsequent modules.\newline
+where, as stated previously, $a_i, b_i \in \textrm{I\!R}^{R+i-1}$ are produced by the controller and the $o_i$ is the output that is appended to the set $\{r_{1}, \dots, r_{R}, o_{1}, \dots, o_{i-1}\}$ and used later for the subsequent modules.
+\begin{figure}[h!]
+	\centering
+	\begin{tikzpicture}[scale=1, node distance = 2.5cm, auto]
 
-Since the registers $r_j$ contain probability distributions, the inputs of the modules are also probability distributions because are weighted averages of probability distributions. Hence, in this way, the gates are extended to work over probability distributions and because the inputs are probability distributions also the output is a probability distribution as follows:
+		\node [block] (init) {Initialize dataset};
+    		\node [block, right of=init, node distance=2.5cm] (emit) {Controller emits the circuit};
+    		\node [block, right of=emit, node distance=2.5cm] (circuit) {Circuit executed};
+    		\node [decision, right of=circuit, node distance=2.5cm] (finish) {t == T?};
+    		\node [round, right of=finish, node distance=2.5cm] (stop) {Stop};
+    		
+    		% Void pointer
+		\node [coordinate, draw=none, fill=none, below of=finish, node distance=1.5cm] (void_one) {};
+		\node [coordinate, draw=none, fill=none, below of=emit, node distance=1.5cm] (void_two) {};    	
+    	
+    		\draw [->] (init) -- (emit);
+    		\draw [->] (emit) -- (circuit);
+    		\draw [->] (circuit) -- (finish);
+    		\draw [->] (finish) -- node [near start] {yes} (stop);
+    		
+    		\draw (finish) -- node [near start] {no} (void_one);
+    		\draw (void_one) -- node [midway, below] {t = t + 1}  (void_two);
+    		
+    		\draw [->] (void_two) -- (emit);
+    		
+	\end{tikzpicture}
+	\caption{High level execution of the NRAM without the Curriculum Learning activated. Here, $t$ is a variable which takes into account the current timestep.}
+\end{figure}
+Since the registers contain probability distributions, the inputs of the modules are also probability distributions because are weighted averages of probability distributions. Hence, the gates are extended to work over probability distributions and because the inputs are probability distributions also the output is a probability distribution as follows:
 \begin{equation}
 	\mathop{\forall}\limits_{c \in N} P(m_i(A, B) = c) = \sum\limits_{a,b \in N} P(A = a)P(B = b)[m_i(a, b) = c]
 \end{equation}
@@ -87,12 +113,36 @@ At the same time of the emission of the vectors $a_{i}, b_{i} \in \textrm{I\!R}^
 
 As stated previously, at the Line \ref{lst:nram:line-6} the controller get some input from the registers. This input could be all the registers content, but in this way the controller's parameters would depend directly on M. This case is undesirable because the neural network could learn the specific problem on which it trains, preventing it to generalize to different size of M. 
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{figure}[t!]
 	\centering
-	\includegraphics[width=0.5\textwidth]{figures/circuit.png}
+	
+	\begin{tikzpicture}[>=latex',line join=bevel,]
+		%%
+		\node (R'0) at (389.1bp,84.0bp) [draw,ellipse] {R'0};
+  		\node (R'1) at (303.1bp,22.0bp) [draw,ellipse] {R'1};
+  		\node (R0) at (20.5bp,78.0bp) [draw,ellipse] {R0};
+  		\node (Read) at (105.0bp,78.0bp) [draw,rectangle,ultra thick] {Read};
+  		\node (Write) at (212.1bp,22.0bp) [draw,rectangle,ultra thick] {Write};
+  		\node (Zero) at (105.0bp,18.0bp) [draw,rectangle,ultra thick] {Zero};
+  		\node (Dec) at (303.1bp,84.0bp) [draw,rectangle,ultra thick] {Dec};
+  		\node (Inc) at (212.1bp,84.0bp) [draw,rectangle,ultra thick] {Inc};
+  		\draw [->] (Dec) ..controls (338.71bp,84.0bp) and (348.04bp,84.0bp)  .. (R'0);
+  		\draw [->] (R0) ..controls (49.413bp,78.0bp) and (58.833bp,78.0bp)  .. (Read);
+  		\draw [->] (Zero) ..controls (143.07bp,18.275bp) and (155.68bp,18.528bp)  .. (167.1bp,19.0bp) .. controls (169.64bp,19.105bp) and (172.25bp,19.231bp)  .. (Write);
+  		\definecolor{strokecol}{rgb}{0.0,0.0,0.0};
+  		\pgfsetstrokecolor{strokecol}
+  		\draw (158.55bp,26.0bp) node {ptr};
+  		\draw [->] (Read) ..controls (144.96bp,80.239bp) and (160.67bp,81.118bp)  .. (Inc);
+  		\draw [->] (Write) ..controls (249.28bp,22.0bp) and (260.51bp,22.0bp)  .. (R'1);
+  		\draw [->] (Inc) ..controls (247.68bp,84.0bp) and (256.93bp,84.0bp)  .. (Dec);
+  		\draw [->] (Read) ..controls (145.35bp,56.905bp) and (161.59bp,48.41bp)  .. (Write);
+  		\draw (158.55bp,61.0bp) node {val};
+		%
+	\end{tikzpicture}
+	%\includegraphics[width=0.5\textwidth]{figures/circuit.png}
 	\caption{Example of NRAM circuit. With the circles are represented the registers and with the rectangles are represented the various circuits. The registers with the apex are those that are modified in the timestep. The labels x and y represent the values order for the gates (obviously if it is violated, a gate produces a different result). The modules Read and Write are presented in the next section.}
 	\label{fig:example-circuit}
-\end{wrapfigure}
+\end{figure}
 
 Hence to resolve this inconvenient, in the original paper the controller receives from all the registers $R$ only $P(r_{i} = 0)$, i.e. the probability that a register content is equal to zero. Another possibility  is to give as input to the controller the discretized registers $r_{i}$ - in other words, what we is done is to discretize the probability distributions, contained in the registers, into integer, using these as input of the controller. Both the solutions limits the information available to the controller, forcing it to solve the problem with the modules instead on its own, and reducing the problem complexity.
 
@@ -128,4 +178,4 @@ Let $\mathcal{M}^{(t)} \in \textrm{I\!R}^{|N|}_{|N|}$ the memory matrix at the e
 \begin{equation}
 	-\sum\limits_{i=1}^{T}\Bigg(p_{t}\cdot\sum\limits_{i=1}^{|N|}log\Big(\mathcal{M}_{i, y_{i}}^{(t)}\Big)\Bigg)
 \end{equation}
-where $y_i$ is the expected integer value at the $i^{th}$ memory cell, that here acts also as a pointer. The cost calculation is made only over the part of the memory that contains the output, leaving out the other parts made available as a ``free'' memory which supports the NRAM execution.
+where $y_i$ is the expected integer value at the $i^{th}$ memory cell, that here acts also as a pointer. The cost calculation is made only over the part of the memory that contains the output of interest, leaving out the other parts made available as a ``free'' memory which supports the NRAM execution.
