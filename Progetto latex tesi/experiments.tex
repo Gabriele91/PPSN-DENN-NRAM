@@ -1,11 +1,11 @@
 \label{experiments}
-In the first part of this chapter we present part the problems on which the NRAM is trained and in the second part we compare the results and we show the circuits learned by the neural networks.
+In the first part of this chapter we present some problems on which the NRAM is trained, while in the second part, we compare the results and we show the circuits learned by the neural networks.
 
 \section{Tasks}
-The following are the description of the executed task used in our experiments. In the description, big and small letters represents respectively arrays and pointers, \textit{NULL} denotes the value 0 and is used as an ending character or in the lists, as a placeholder for missing next element. In the experiments, along the initial and desired memories, are also generated the cost masks that used during the cost calculation as attention mechanisms.
+In the following task descriptions, big and small letters represent respectively arrays and pointers, \textit{NULL} denotes the value 0 and is used as an ending character or in the lists, as a placeholder for missing next element. In the experiments, along the initial and desired memories, the cost masks used during the cost calculation as attention mechanisms  are also generated.
 
 \subsection{Access}
-Given a value $k$ and an array \textbf{A}, return $\textbf{A}[k]$. Input is given as $k,\ A[0],\ \dots,\ $\\$\textbf{A}[n-1],\ \textit{NULL}$ and the network should replace the first memory cell with $\textbf{A}[k]$. An example is visible in Figure \ref{fig:access-example}.
+Given a value $k$ and an array \textbf{A}, it returns $\textbf{A}[k]$. Input is given as $k,\ A[0],\ \dots,\ $\\$\textbf{A}[n-1],\ \textit{NULL}$ and the network should replace the first memory cell with $\textbf{A}[k]$. An example is visible in Figure \ref{fig:access-example}.
 \begin{table}[h!]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
